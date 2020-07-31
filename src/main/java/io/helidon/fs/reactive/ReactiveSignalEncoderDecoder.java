@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.json.bind.JsonbConfig;
 import javax.websocket.Decoder;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
@@ -16,7 +17,7 @@ public class ReactiveSignalEncoderDecoder
 
     private static final Logger LOGGER = Logger.getLogger(ReactiveSignalEncoderDecoder.class.getName());
 
-    private static final Jsonb jsonb = JsonbBuilder.create();
+    private static final Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withAdapters(new ThrowableAdapter()));
 
     @Override
     public ReactiveSignal decode(final Reader reader) {
